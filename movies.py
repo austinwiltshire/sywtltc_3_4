@@ -2,18 +2,23 @@
 
 MOVIE_PRICE = 5.0
 
-def enough_money(customers):
+def enough_money(customer):
     """Check if customer has adequate funds"""
-    if customers["cash"] < 5.0:
+    if customer["cash"] < 5.0:
         return False
     return True
 
-    #   customer[customer]["cash"] = customer[customer]["cash"] - 5.0
-     #  customer[customer]["movies"].append("movies");
-      # return True
+def deduct_money(customer):
+    """Deduct $5 from moviegoer's account"""
+    customer["cash"] = customer["cash"] - 5.0
+    return customer
+
+
+    #customer[customer]["movies"].append("movies");
+    #return True
 
 if __name__ == "__main__":
-    CUSTOMERS = {
+    CUSTOMER_DB = {
         "Bob" : {"movies":[],
                  "cash" : 100.0},
         "Jim" : {"movies": ["Xmen 8: The Xmennening"],
@@ -23,7 +28,7 @@ if __name__ == "__main__":
         "Ricci": {"movies": [],
                   "cash" : 4.0}
     }
-    MOVIES = {
+    MOVIE_DB = {
         "Xmen 8: The Xmennening": 10,
         "The Bromance" : 20,
         "Gigli: The Play: The Book: The movie" : 102
