@@ -1,24 +1,26 @@
 MOVIE_PRICE = 5.0
 
-movie = {
-"Xmen 8: The Xmennening": 10,
-"The Bromance" : 20,
-"Gigli: The Play: The Book: The movie" : 102
-}
+def enough_money(customer):
+    assert customer["cash"] < 5.0, "Not enough money."
 
-customer = {
-"Bob" : {"movies":[], "cash" : 100.0},
-"Jim" : {"movies": ["Xmen 8: The Xmennening"], "cash" : 10.0},
-"Cary" : {"movies": ["Gigli: The Play: The Book: The movie", "The Bromance"], "cash" : 120.0},
-"Ricci": {"movies": [], "cash" : 4.0}
-}
+    elif customer[mvg]["cash"] > 5.0:
+        customer[mvg]["cash"] = customer[mvg]["cash"] - 5.0
+        customer[mvg]["movies"].append(mv);
+        return True
 
-
-def purchase_ticket(movie, customer):
-    _mv_db[mv] = _mv_db[mv] - 1
-    if _mvg_d[mvg]["cash"] > 5.0:
-        _mvg_d[mvg]["cash"] = _mvg_d[mvg]["cash"] - 5.0; _mvg_d[mvg]["movies"].append(mv); return True
-    return False
-def tesst():
-    do_p("Xmen 8: The Xmennening", "Ricci")
-    assert _mv_db["Xmen 8: The Xmennening"] == 10 #WTF?
+if __name__ == "__main__":
+    CUSTOMERS = {
+        "Bob" : {"movies":[],
+                 "cash" : 100.0},
+        "Jim" : {"movies": ["Xmen 8: The Xmennening"],
+                 "cash" : 10.0},
+        "Cary" : {"movies": ["Gigli: The Play: The Book: The movie", "The Bromance"],
+                  "cash" : 120.0},
+        "Ricci": {"movies": [],
+                  "cash" : 4.0}
+    }
+    MOVIES = {
+        "Xmen 8: The Xmennening": 10,
+        "The Bromance" : 20,
+        "Gigli: The Play: The Book: The movie" : 102
+    }
