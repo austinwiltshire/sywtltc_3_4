@@ -8,9 +8,14 @@ def enough_money(customer):
         return False
     return True
 
-def deduct_money(customer):
+def purchase(customer):
     """Deduct $5 from moviegoer's account"""
     customer["cash"] = customer["cash"] - 5.0
+    return customer
+
+def refund(customer):
+    """Add $5 back to moviegoer's account"""
+    customer["cash"] = customer["cash"] + 5.0
     return customer
 
 
