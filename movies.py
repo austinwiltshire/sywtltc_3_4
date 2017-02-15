@@ -8,33 +8,23 @@ def enough_money(customer):
         return False
     return True
 
-def purchase(customer):
+def purchase(movie, customer):
     """Deduct $5 from moviegoer's account"""
     customer["cash"] = customer["cash"] - 5.0
+#   customer["movies"] = customer["movies"].append(movie)
     return customer
 
-def refund(customer):
+def refund(movie, customer):
     """Add $5 back to moviegoer's account"""
     customer["cash"] = customer["cash"] + 5.0
     return customer
 
+def enter_theatre(movie, customer):
+    """Removes ticket from account"""
+#    customer["movies"] = customer["movies"] - movie
 
-    #customer[customer]["movies"].append("movies");
-    #return True
+def audit(movies, customers):
+    """Prints system data"""
+    print(CUSTOMER)
+    print(MOVIE)
 
-if __name__ == "__main__":
-    CUSTOMER_DB = {
-        "Bob" : {"movies":[],
-                 "cash" : 100.0},
-        "Jim" : {"movies": ["Xmen 8: The Xmennening"],
-                 "cash" : 10.0},
-        "Cary" : {"movies": ["Gigli: The Play: The Book: The movie", "The Bromance"],
-                  "cash" : 120.0},
-        "Ricci": {"movies": [],
-                  "cash" : 4.0}
-    }
-    MOVIE_DB = {
-        "Xmen 8: The Xmennening": 10,
-        "The Bromance" : 20,
-        "Gigli: The Play: The Book: The movie" : 102
-    }

@@ -2,12 +2,26 @@
 
 import movies
 
+CUSTOMERS = {
+    "Bob" : {"movies":[],
+             "cash" : 100.0},
+    "Jim" : {"movies": ["Xmen 8: The Xmennening"],
+             "cash" : 10.0},
+    "Cary" : {"movies": ["Gigli: The Play: The Book: The movie", "The Bromance"],
+              "cash" : 120.0},
+    "Ricci": {"movies": [],
+              "cash" : 4.0}
+}
+MOVIE_TICKETS = {
+    "Xmen 8: The Xmennening": 10,
+    "The Bromance" : 20,
+    "Gigli: The Play: The Book: The movie" : 102
+}
+
 def test_enough_money():
     """Tests the purchase ticket function"""
-    customer = {"movies": [], "cash": 4.0}
-    customer2 = {"movies": [], "cash": 7.0}
-    assert movies.enough_money(customer) is False
-    assert movies.enough_money(customer2) is True
+    assert movies.enough_money("Ricci") is False
+    assert movies.enough_money("Bob") is True
 
 def test_purchase():
     """Tests $5 charge to account"""
