@@ -35,3 +35,15 @@ def test_charge():
     jims_actual_cash = movies.charge(jim)["cash"]
     jims_expected_cash = 5.0
     assert jims_actual_cash == jims_expected_cash
+
+def test_dispense_ticket():
+    """Test adding ticket to customers account"""
+    bob = {"movies": [], "cash": 100.0}
+    bobs_library = movies.dispense_ticket("Xmen 8: The Xmennening", bob)["movies"]
+    bobs_expected_library = ['Xmen 8: The Xmennening']
+    assert bobs_library == bobs_expected_library
+    jim = {"movies": ["Xmen 8: The Xmennening"], "cash" : 10.0}
+    jims_library = movies.dispense_ticket("The Bromance", jim)["movies"]
+    jims_expected_library = ['Xmen 8: The Xmennening', "The Bromance"]
+    assert jims_library == jims_expected_library
+

@@ -20,7 +20,7 @@ def charge(customer):
     return customer
 def dispense_ticket(movie, customer):
     """Add movie to customer's account"""
-    customer["movies"] = customer["movies"].append(movie)
+    customer["movies"].append(movie)
     return customer
 def remove_seat(movie):
     """Remove seat from ticket database"""
