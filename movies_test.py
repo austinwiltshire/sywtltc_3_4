@@ -20,12 +20,14 @@ MOVIE_TICKETS = {
 
 def test_enough_money():
     """Tests the enough money function"""
-    assert movies.enough_money("Ricci") is False
-    assert movies.enough_money("Bob") is True
+    bob = {"movies":[], "cash" : 100.0}
+    ricci = {"movies": [], "cash" : 4.0}
+    assert movies.enough_money(ricci) is False
+    assert movies.enough_money(bob) is True
 
 def test_charge():
     """Tests charge function"""
-    bob = movies.charge("Bob")
+    bob = movies.charge('Bob')
     actual_cash = bob["cash"]
     expected_cash = 95.0
     assert actual_cash == expected_cash

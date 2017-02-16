@@ -1,7 +1,5 @@
 """Movie ticket processing system and database"""
 
-MOVIE_PRICE = 5.0
-
 def enough_money(customer):
     """Check if customer has adequate funds"""
     balance = customer["cash"]
@@ -20,7 +18,6 @@ def charge(customer):
     """Charge customer $5"""
     balance = customer["cash"]
     new_balance = balance - 5.0
-    customer["cash"] = new_balance
     return customer
 def dispense_ticket(movie, customer):
     """Add movie to customer's account"""
