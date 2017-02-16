@@ -13,9 +13,9 @@ CUSTOMERS = {
               "cash" : 4.0}
 }
 MOVIE_TICKETS = {
-    "Xmen 8: The Xmennening" : {"seats" : 10},
-    "The Bromance" : {"seats" : 20},
-    "Gigli: The Play: The Book: The movie" : {"seats" : 102}
+    "Xmen" : {"title" : ["Xmen 8: The Xmennening"], "seats" : 10},
+    "Bromance" : {"title" : ["The Bromance"], "seats" : 20},
+    "Gigli" : {"title" : ["Gigli: The Play: The Book: The movie"], "seats" : 102}
 }
 
 def test_enough_money():
@@ -47,3 +47,13 @@ def test_dispense_ticket():
     jims_expected_library = ['Xmen 8: The Xmennening', "The Bromance"]
     assert jims_library == jims_expected_library
 
+def test_remove_seat():
+    """Tests remove seat function"""
+    xmen = {"title" : ["Xmen 8: The Xmennening"], "seats" : 10}
+    xmen_seats = movies.remove_seat(xmen)["seats"]
+    xmen_expected_seats = 9
+    assert xmen_seats == xmen_expected_seats
+    bromance = {"title" : ["The Bromance"], "seats" : 20}
+    bro_seats = movies.remove_seat(bromance)["seats"]
+    bro_expected_seats = 19
+    assert bro_seats == bro_expected_seats
