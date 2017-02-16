@@ -27,7 +27,11 @@ def test_enough_money():
 
 def test_charge():
     """Tests charge function"""
-    bob = movies.charge('Bob')
-    actual_cash = bob["cash"]
-    expected_cash = 95.0
-    assert actual_cash == expected_cash
+    bob = {"movies": [], "cash": 100.0}
+    bobs_actual_cash = movies.charge(bob)["cash"]
+    bobs_expected_cash = 95.0
+    assert bobs_actual_cash == bobs_expected_cash
+    jim = {"movies": ["Xmen 8: The Xmennening"], "cash" : 10.0}
+    jims_actual_cash = movies.charge(jim)["cash"]
+    jims_expected_cash = 5.0
+    assert jims_actual_cash == jims_expected_cash

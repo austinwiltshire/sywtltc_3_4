@@ -16,8 +16,7 @@ def purchase_ticket(movie, customer):
 
 def charge(customer):
     """Charge customer $5"""
-    balance = customer["cash"]
-    new_balance = balance - 5.0
+    customer["cash"] = customer["cash"] - 5.0
     return customer
 def dispense_ticket(movie, customer):
     """Add movie to customer's account"""
