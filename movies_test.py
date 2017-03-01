@@ -80,21 +80,23 @@ def test_add_funds():
 def test_remove_ticket():
     """Tests removing ticket back from account"""
     jim = {"movies": ["Xmen 8: The Xmennening"], "cash" : 10.0}
-    jims_library = movies.remove_ticket('Xmen 8: The Xmennening', jim)["movies"]
+    xmen = {"title" : "Xmen 8: The Xmennening", "seats" : 10}
+    jims_library = movies.remove_ticket(xmen, jim)["movies"]
     jims_expected_library = []
     assert jims_library == jims_expected_library
     cary = {"movies": ["Gigli: The Play: The Book: The movie", "The Bromance"],
             "cash" : 120.0}
-    cary_library = movies.remove_ticket("The Bromance", cary)["movies"]
+    bromance = {"title" : "The Bromance", "seats" : 20}
+    cary_library = movies.remove_ticket(bromance, cary)["movies"]
     cary_expected_library = ["Gigli: The Play: The Book: The movie"]
     assert cary_library == cary_expected_library
 def test_add_seat():
     """Tests remove seat function"""
-    xmen = {"title" : ["Xmen 8: The Xmennening"], "seats" : 10}
+    xmen = {"title" : "Xmen 8: The Xmennening", "seats" : 10}
     xmen_seats = movies.add_seat(xmen)["seats"]
     xmen_expected_seats = 11
     assert xmen_seats == xmen_expected_seats
-    bromance = {"title" : ["The Bromance"], "seats" : 20}
+    bromance = {"title" : "The Bromance", "seats" : 20}
     bro_seats = movies.add_seat(bromance)["seats"]
     bro_expected_seats = 21
     assert bro_seats == bro_expected_seats

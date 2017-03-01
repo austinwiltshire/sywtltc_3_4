@@ -40,7 +40,7 @@ def add_funds(customer):
     return customer
 def remove_ticket(movie, customer):
     """Removies ticket from customers library"""
-    customer["movies"].remove(movie)
+    customer["movies"].remove(movie["title"])
     return customer
 def add_seat(movie):
     """Add seat back to database"""
@@ -48,9 +48,6 @@ def add_seat(movie):
     return movie
 
 
-#def enter_theatre(movie, customer):
- #   """Removes ticket from account"""
-#    customer["movies"] = customer["movies"] - movie
 
 def audit(movies, customers):
     """Prints system data"""
