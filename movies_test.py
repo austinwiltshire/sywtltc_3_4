@@ -100,3 +100,13 @@ def test_add_seat():
     bro_seats = movies.add_seat(bromance)["seats"]
     bro_expected_seats = 21
     assert bro_seats == bro_expected_seats
+
+def test_refund_ticket():
+    """Tests all subfunctions of refund_tickets"""
+    jim = {"movies": ["Xmen 8: The Xmennening"], "cash" : 10.0}
+    xmen = {"title" : "Xmen 8: The Xmennening", "seats" : 10}
+    actual_jim, actual_xmen = movies.refund_ticket(xmen, jim)
+    expected_jim = {"movies": [], "cash" : 15.0}
+    expected_xmen = {"title" : "Xmen 8: The Xmennening", "seats" : 11}
+    assert actual_jim == expected_jim
+    assert actual_xmen == expected_xmen
