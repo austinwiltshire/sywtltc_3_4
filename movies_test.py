@@ -48,25 +48,24 @@ def test_dispense_ticket():
     assert jims_library == jims_expected_library
 def test_remove_seat():
     """Tests remove seat function"""
-    xmen = {"title" : ["Xmen 8: The Xmennening"], "seats" : 10}
+    xmen = {"title" : "Xmen 8: The Xmennening", "seats" : 10}
     xmen_seats = movies.remove_seat(xmen)
-    xmen_expected_seats = {"title" : ["Xmen 8: The Xmennening"], "seats" : 9}
+    xmen_expected_seats = {"title" : "Xmen 8: The Xmennening", "seats" : 9}
     assert xmen_seats == xmen_expected_seats
-    bromance = {"title" : ["The Bromance"], "seats" : 20}
+    bromance = {"title" : "The Bromance", "seats" : 20}
     bro_seats = movies.remove_seat(bromance)
-    bro_expected_seats = {"title" : ["The Bromance"], "seats" : 19}
+    bro_expected_seats = {"title" : "The Bromance", "seats" : 19}
     assert bro_seats == bro_expected_seats
 
 def test_purchase_tickets():
     """Tests all subfunctions of purchase_tickets"""
     bob = {"movies": [], "cash": 100.0}
-    bromance = {"title" : ["The Bromance"], "seats" : 20}
+    bromance = {"title" : "The Bromance", "seats" : 20}
     actual_bob, actual_bromance = movies.purchase_ticket(bromance, bob)
-    expected_bob = {"movies": [["The Bromance"]], "cash" : 95.0}
-    expected_bromance = {"title" : ["The Bromance"], "seats" : 19}
+    expected_bob = {"movies": ["The Bromance"], "cash" : 95.0}
+    expected_bromance = {"title" : "The Bromance", "seats" : 19}
     assert actual_bob == expected_bob
     assert actual_bromance == expected_bromance
-
 def test_add_funds():
     """Tests charge function"""
     bob = {"movies": [], "cash": 100.0}
