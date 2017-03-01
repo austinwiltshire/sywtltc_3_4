@@ -41,11 +41,11 @@ def test_dispense_ticket():
     bobs_library = movies.dispense_ticket(xmen, bob)["movies"]
     bobs_expected_library = ["Xmen 8: The Xmennening"]
     assert bobs_library == bobs_expected_library
-#    jim = {"movies": ["Xmen 8: The Xmennening"], "cash" : 10.0}
- #   bromance = {"title" : ["The Bromance"], "seats" : 20}
- #   jims_library = movies.dispense_ticket(bromance, jim)["movies"]
- #   jims_expected_library = ["Xmen 8: The Xmennening"], ["The Bromance"]
- #   assert jims_library == jims_expected_library
+    jim = {"movies": ["Xmen 8: The Xmennening"], "cash" : 10.0}
+    bromance = {"title" : "The Bromance", "seats" : 20}
+    jims_library = movies.dispense_ticket(bromance, jim)["movies"]
+    jims_expected_library = ["Xmen 8: The Xmennening", "The Bromance"]
+    assert jims_library == jims_expected_library
 def test_remove_seat():
     """Tests remove seat function"""
     xmen = {"title" : ["Xmen 8: The Xmennening"], "seats" : 10}
