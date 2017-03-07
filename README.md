@@ -11,4 +11,7 @@ It is only necessary to use purchase_tickets and refund_tickets. The subfunction
 This program also offers a print_movie_data function to return data from a movie library.
 In addition, print_customer_data does the same for a customer library.
 
-NOTE: movies.py does not contain a customer database. movies_test.py has an example of how you should format your libraries for this program.
+NOTE: movies.py does not contain a customer or movie database. movies_test.py has an example of how you should format your libraries for this program.
+
+Customer libraries should contain "movies" and "cash" fields. "movies" can be left blank if the customer owns no movie tickets.
+Movie libraries should contain "title" and "seats".
