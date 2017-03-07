@@ -1,7 +1,5 @@
 """Movie ticket process system and database"""
 
-import pprint
-
 def enough_money(customer):
     """Check if customer has adequate funds"""
     balance = customer["cash"]
@@ -55,8 +53,10 @@ def add_seat(movie):
 
 def print_movie_data(movie):
     """Prints movie database informations"""
-    pprint.pprint(movie, depth=2)
+    print("Movie Title:           ", movie["title"])
+    print("Seats Remaining:       ", movie["seats"])
 
 def print_customer_data(customer):
     """Prints customer database information"""
-    pprint.pprint(customer)
+    print("Movie Tickets:         ", customer["movies"])
+    print("Account Balance:       ", customer["cash"])
