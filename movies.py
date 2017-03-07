@@ -1,4 +1,6 @@
-"""Movie ticket processing system and database"""
+"""Movie ticket process system and database"""
+
+import pprint
 
 def enough_money(customer):
     """Check if customer has adequate funds"""
@@ -18,10 +20,12 @@ def charge(customer):
     """Charge customer $5"""
     customer["cash"] = customer["cash"] - 5.0
     return customer
+
 def dispense_ticket(movie, customer):
     """Add movie to customer's account"""
     customer["movies"].append(movie["title"])
     return customer
+
 def remove_seat(movie):
     """Remove seat from ticket database"""
     movie["seats"] = movie["seats"] - 1.0
@@ -38,19 +42,21 @@ def add_funds(customer):
     """Add $5 back to moviegoer's account"""
     customer["cash"] = customer["cash"] + 5.0
     return customer
+
 def remove_ticket(movie, customer):
     """Removies ticket from customers library"""
     customer["movies"].remove(movie["title"])
     return customer
+
 def add_seat(movie):
     """Add seat back to database"""
     movie["seats"] = movie["seats"] + 1.0
     return movie
 
+def print_movie_data(movie):
+    """Prints movie database informations"""
+    pprint.pprint(movie, depth=2)
 
-
-def audit(movies, customers):
-    """Prints system data"""
-    print(CUSTOMER)
-    print(MOVIE)
-
+def print_customer_data(customer):
+    """Prints customer database information"""
+    pprint.pprint(customer)
