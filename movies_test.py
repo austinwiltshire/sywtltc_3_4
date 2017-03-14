@@ -28,8 +28,8 @@ def test_enough_money():
     customers = customer_db()
     bob = customers["Bob"]
     ricci = customers["Ricci"]
-    assert movies.enough_money(ricci) is False
-    assert movies.enough_money(bob) is True
+    assert not movies.enough_money(ricci)
+    assert movies.enough_money(bob)
 
 def test_charge():
     """Tests charge function"""
@@ -75,7 +75,7 @@ def test_purchase_tickets():
     customers = customer_db()
     movies_ = movie_db()
     bob = customers["Bob"]
-    bromance = movies_["Bromance"] #do the above functions alter libraries moving through?
+    bromance = movies_["Bromance"]
     actual_bob, actual_bromance = movies.purchase_ticket(bromance, bob)
     expected_bob = {"movies": ["The Bromance"], "cash" : 95.0}
     expected_bromance = {"title" : "The Bromance", "seats_avaliable" : 19}
