@@ -1,9 +1,9 @@
 """Movie ticket process system and database"""
 
+import pprint
+
 MOVIE_PRICE = 5.0
 
-import pprint
-    
 def customer_db():
     """Define Customer database for testing"""
     return {
@@ -86,8 +86,7 @@ def print_movie_data(movie):
 
 def print_customer_data(customer): #movies have brackets around them
     """Prints customer database information"""
-    movie_list = customer_db()
-    print("Movie Tickets:         ", customer["movies"])
+    print("Movie Tickets:         ", ",  ".join(customer["movies"]))
     print("Account Balance:       ", customer["cash"])
 
 def print_all_movie_data():
