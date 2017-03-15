@@ -35,20 +35,24 @@ def test_charge():
     """Tests charge function"""
     customers = customer_db()
     bob = customers["Bob"]
+    assert movies.enough_money(bob)
     bobs_actual_cash = movies.charge(bob)["cash"]
     bobs_expected_cash = 95.0
     assert bobs_actual_cash == bobs_expected_cash
     jim = customers["Jim"]
+    assert movies.enough_money(bob)
     jims_actual_cash = movies.charge(jim)["cash"]
     jims_expected_cash = 5.0
     assert jims_actual_cash == jims_expected_cash
+    ricci = customers["Ricci"]
+    assert not movies.enough_money(ricci)
 
 def test_dispense_ticket():
     """Test adding ticket to customers account"""
     customers = customer_db()
     movies_ = movie_db()
     bob = customers["Bob"]
-    xmen = movies_["Xmen"] #here
+    xmen = movies_["Xmen"]
     bobs_library = movies.dispense_ticket(xmen, bob)["movies"]
     bobs_expected_library = ["Xmen 8: The Xmennening"]
     assert bobs_library == bobs_expected_library
@@ -62,10 +66,12 @@ def test_remove_seat():
     """Tests remove seat function"""
     movies_ = movie_db()
     xmen = movies_["Xmen"]
+    assert xmen["seats_avaliable"] >= 1
     xmen_seats_avaliable = movies.remove_seat(xmen)
     xmen_expected_seats_avaliable = {"title" : "Xmen 8: The Xmennening", "seats_avaliable" : 9}
     assert xmen_seats_avaliable == xmen_expected_seats_avaliable
     bromance = movies_["Bromance"]
+    assert bromance["seats_avaliable"] >= 1
     bro_seats_avaliable = movies.remove_seat(bromance)
     bro_expected_seats_avaliable = {"title" : "The Bromance", "seats_avaliable" : 19}
     assert bro_seats_avaliable == bro_expected_seats_avaliable

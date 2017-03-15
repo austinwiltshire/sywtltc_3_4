@@ -1,29 +1,6 @@
 """Movie ticket process system and database"""
 
-import pprint
-
 MOVIE_PRICE = 5.0
-
-def customer_db():
-    """Define Customer database for testing"""
-    return {
-        "Bob" : {"movies":[],
-                 "cash" : 100.0},
-        "Jim" : {"movies": ["Xmen 8: The Xmennening"],
-                 "cash" : 10.0},
-        "Cary" : {"movies": ["Gigli: The Play: The Book: The movie", "The Bromance"],
-                  "cash" : 120.0},
-        "Ricci": {"movies": [],
-                  "cash" : 4.0}
-    }
-
-def movie_db():
-    """Define movie database for testing"""
-    return {
-        "Xmen" : {"title" : "Xmen 8: The Xmennening", "seats_avaliable" : 10},
-        "Bromance" : {"title" : "The Bromance", "seats_avaliable" : 20},
-        "Gigli" : {"title" : "Gigli: The Play: The Book: The movie", "seats_avaliable" : 102}
-    }
 
 def enough_money(customer):
     """Check if customer has adequate funds"""
@@ -42,6 +19,7 @@ def purchase_ticket(movie, customer):
 
 def charge(customer):
     """Charge customer the price of one ticket"""
+    assert enough_money(customer)
     customer["cash"] = customer["cash"] - MOVIE_PRICE
     return customer
 
@@ -53,6 +31,7 @@ def dispense_ticket(movie, customer):
 
 def remove_seat(movie):
     """Remove seat from ticket database"""
+    assert movie["seats_avaliable"] >= 1
     movie["seats_avaliable"] = movie["seats_avaliable"] - 1
     return movie
 
@@ -89,12 +68,15 @@ def print_customer_data(customer): #movies have brackets around them
     print("Movie Tickets:         ", ",  ".join(customer["movies"]))
     print("Account Balance:       ", customer["cash"])
 
-def print_all_movie_data():
+def print_all_movie_data(movie_dictionary):
     """Print all movie data raw"""
-    __movies__ = movie_db()
-    pprint.pprint(__movies__)
+    for title, details in movie_dictionary.items():
+        print_movie_data(details)
+        print("")
 
-def print_all_customer_data():
+def print_all_customer_data(customer_dictionary):
     """Print all customer data raw"""
-    __customers__ = customer_db()
-    pprint.pprint(__customers__)
+    for customer, details in customer_dictionary.items():
+        print(customer)
+        print_customer_data(details)
+        print("")
