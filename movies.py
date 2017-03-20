@@ -24,14 +24,14 @@ def charge(customer):
 
 def dispense_ticket(movie, customer):
     """Add movie to customer's account"""
-    assert movie["seats_avaliable"] >= 1
+    assert movie["seats_available"] >= 1
     customer["movies"].append(movie["title"])
     return customer
 
 def remove_seat(movie):
     """Remove seat from ticket database"""
-    assert movie["seats_avaliable"] >= 1
-    movie["seats_avaliable"] = movie["seats_avaliable"] - 1
+    assert movie["seats_available"] >= 1
+    movie["seats_available"] = movie["seats_available"] - 1
     return movie
 
 def refund_ticket(movie, customer):
@@ -53,13 +53,13 @@ def remove_ticket(movie, customer):
 
 def add_seat(movie):
     """Add seat back to database"""
-    movie["seats_avaliable"] = movie["seats_avaliable"] + 1
+    movie["seats_available"] = movie["seats_available"] + 1
     return movie
 
 def print_movie_data(movie):
     """Prints movie database informations"""
     print("Movie Title:           ", movie["title"])
-    print("Seats Remaining:       ", movie["seats_avaliable"])
+    print("Seats Remaining:       ", movie["seats_available"])
 
 def print_customer_data(customer): #movies have brackets around them
     """Prints customer database information"""

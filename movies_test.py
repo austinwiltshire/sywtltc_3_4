@@ -18,9 +18,11 @@ def customer_db():
 def movie_db():
     """Define movie database for testing"""
     return {
-        "Xmen" : {"title" : "Xmen 8: The Xmennening", "seats_avaliable" : 10},
-        "Bromance" : {"title" : "The Bromance", "seats_avaliable" : 20},
-        "Gigli" : {"title" : "Gigli: The Play: The Book: The movie", "seats_avaliable" : 102}
+        "Xmen" : {"title" : "Xmen 8: The Xmennening", "seats_available" : 10},
+        "Bromance" : {"title" : "The Bromance", "seats_available" : 20},
+        "Gigli" : {"title" : "Gigli: The Play: The Book: The movie", "seats_available" : 102},
+        "Hungergames" : {"title" : "The Hunger Games", "seats_available" : 1},
+        "Starwars" : {"title" : "Starwars 13: Yet Another!", "seats_available" : 0}
     }
 
 def test_enough_money():
@@ -72,16 +74,19 @@ def test_remove_seat():
     movies_ = movie_db()
 
     xmen = movies_["Xmen"]
-    assert xmen["seats_avaliable"] >= 1
-    xmen_seats_avaliable = movies.remove_seat(xmen)
-    xmen_expected_seats_avaliable = {"title" : "Xmen 8: The Xmennening", "seats_avaliable" : 9}
-    assert xmen_seats_avaliable == xmen_expected_seats_avaliable
+    assert xmen["seats_available"] >= 1
+    xmen_seats_available = movies.remove_seat(xmen)
+    xmen_expected_seats_available = {"title" : "Xmen 8: The Xmennening", "seats_available" : 9}
+    assert xmen_seats_available == xmen_expected_seats_available
 
-    bromance = movies_["Bromance"]
-    assert bromance["seats_avaliable"] >= 1
-    bro_seats_avaliable = movies.remove_seat(bromance)
-    bro_expected_seats_avaliable = {"title" : "The Bromance", "seats_avaliable" : 19}
-    assert bro_seats_avaliable == bro_expected_seats_avaliable
+    hungergames = movies_["Hungergames"]
+    assert hungergames["seats_available"] >= 1
+    hg_seats_available = movies.remove_seat(hungergames)
+    hg_expected_seats_available = {"title" : "The Hunger Games", "seats_available" : 0}
+    assert hg_seats_available == hg_expected_seats_available
+
+    starwars = movies_["Starwars"]
+    assert not starwars["seats_available"] >= 1
 
 def test_purchase_tickets():
     """Tests all subfunctions of purchase_tickets"""
@@ -93,7 +98,7 @@ def test_purchase_tickets():
     expected_bob = {"movies": ["The Bromance"], "cash" : 95.0}
     assert actual_bob == expected_bob
 
-    expected_bromance = {"title" : "The Bromance", "seats_avaliable" : 19}
+    expected_bromance = {"title" : "The Bromance", "seats_available" : 19}
     assert actual_bromance == expected_bromance
 
 def test_add_funds():
@@ -130,14 +135,14 @@ def test_add_seat():
     movies_ = movie_db()
 
     xmen = movies_["Xmen"]
-    xmen_seats_avaliable = movies.add_seat(xmen)["seats_avaliable"]
-    xmen_expected_seats_avaliable = 11
-    assert xmen_seats_avaliable == xmen_expected_seats_avaliable
+    xmen_seats_available = movies.add_seat(xmen)["seats_available"]
+    xmen_expected_seats_available = 11
+    assert xmen_seats_available == xmen_expected_seats_available
 
     bromance = movies_["Bromance"]
-    bro_seats_avaliable = movies.add_seat(bromance)["seats_avaliable"]
-    bro_expected_seats_avaliable = 21
-    assert bro_seats_avaliable == bro_expected_seats_avaliable
+    bro_seats_available = movies.add_seat(bromance)["seats_available"]
+    bro_expected_seats_available = 21
+    assert bro_seats_available == bro_expected_seats_available
 
 def test_refund_ticket():
     """Tests all subfunctions of refund_tickets"""
@@ -149,5 +154,5 @@ def test_refund_ticket():
     expected_jim = {"movies": [], "cash" : 15.0}
     assert actual_jim == expected_jim
 
-    expected_xmen = {"title" : "Xmen 8: The Xmennening", "seats_avaliable" : 11}
+    expected_xmen = {"title" : "Xmen 8: The Xmennening", "seats_available" : 11}
     assert actual_xmen == expected_xmen
