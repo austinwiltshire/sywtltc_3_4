@@ -21,8 +21,7 @@ def movie_db():
         "Xmen" : {"title" : "Xmen 8: The Xmennening", "seats_available" : 10},
         "Bromance" : {"title" : "The Bromance", "seats_available" : 20},
         "Gigli" : {"title" : "Gigli: The Play: The Book: The movie", "seats_available" : 102},
-        "Hungergames" : {"title" : "The Hunger Games", "seats_available" : 1},
-        "Starwars" : {"title" : "Starwars 13: Yet Another!", "seats_available" : 0}
+        "Hungergames" : {"title" : "The Hunger Games", "seats_available" : 1}
     }
 
 def test_enough_money():
@@ -30,6 +29,7 @@ def test_enough_money():
     customers = customer_db()
 
     ricci = customers["Ricci"]
+    assert ricci["cash"] < 5
     assert not movies.enough_money(ricci)
 
     bob = customers["Bob"]
@@ -40,18 +40,21 @@ def test_charge():
     customers = customer_db()
 
     bob = customers["Bob"]
+    assert bob["cash"] == 100.0
     assert movies.enough_money(bob)
     bobs_actual_cash = movies.charge(bob)["cash"]
     bobs_expected_cash = 95.0
     assert bobs_actual_cash == bobs_expected_cash
 
     jim = customers["Jim"]
+    assert jim["cash"] == 10
     assert movies.enough_money(bob)
     jims_actual_cash = movies.charge(jim)["cash"]
     jims_expected_cash = 5.0
     assert jims_actual_cash == jims_expected_cash
 
     ricci = customers["Ricci"]
+    assert ricci["cash"] == 4.0
     assert not movies.enough_money(ricci)
 
 def test_dispense_ticket():
@@ -74,19 +77,14 @@ def test_remove_seat():
     movies_ = movie_db()
 
     xmen = movies_["Xmen"]
-    assert xmen["seats_available"] >= 1
-    xmen_seats_available = movies.remove_seat(xmen)
-    xmen_expected_seats_available = {"title" : "Xmen 8: The Xmennening", "seats_available" : 9}
-    assert xmen_seats_available == xmen_expected_seats_available
+    assert xmen["seats_available"] == 10
+    xmen = movies.remove_seat(xmen)
+    assert xmen["seats_available"] == 9
 
     hungergames = movies_["Hungergames"]
-    assert hungergames["seats_available"] >= 1
-    hg_seats_available = movies.remove_seat(hungergames)
-    hg_expected_seats_available = {"title" : "The Hunger Games", "seats_available" : 0}
-    assert hg_seats_available == hg_expected_seats_available
-
-    starwars = movies_["Starwars"]
-    assert not starwars["seats_available"] >= 1
+    assert hungergames["seats_available"] == 1
+    hungergames = movies.remove_seat(hungergames)
+    assert hungergames["seats_available"] == 0
 
 def test_purchase_tickets():
     """Tests all subfunctions of purchase_tickets"""
@@ -106,11 +104,13 @@ def test_add_funds():
     customers = customer_db()
 
     bob = customers["Bob"]
+    assert bob["cash"] == 100.0
     bobs_actual_cash = movies.add_funds(bob)["cash"]
     bobs_expected_cash = 105.0
     assert bobs_actual_cash == bobs_expected_cash
 
     ricci = customers["Ricci"]
+    assert ricci["cash"] == 4.0
     ricci_actual_cash = movies.add_funds(ricci)["cash"]
     ricci_expected_cash = 9.0
     assert ricci_actual_cash == ricci_expected_cash
@@ -135,11 +135,13 @@ def test_add_seat():
     movies_ = movie_db()
 
     xmen = movies_["Xmen"]
+    assert xmen["seats_available"] == 10
     xmen_seats_available = movies.add_seat(xmen)["seats_available"]
     xmen_expected_seats_available = 11
     assert xmen_seats_available == xmen_expected_seats_available
 
     bromance = movies_["Bromance"]
+    assert bromance["seats_available"] == 20
     bro_seats_available = movies.add_seat(bromance)["seats_available"]
     bro_expected_seats_available = 21
     assert bro_seats_available == bro_expected_seats_available
