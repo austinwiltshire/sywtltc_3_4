@@ -1,4 +1,4 @@
-"""Movie ticket process system and database"""
+"""Movie ticket process system"""
 
 MOVIE_PRICE = 5.0
 
@@ -12,8 +12,7 @@ def enough_money(customer):
 def purchase_ticket(movie, customer):
     """Performs the steps required in purchasing a ticket and returns altered customer and movie"""
     assert enough_money(customer)
-    customer = charge(customer)
-    customer = dispense_ticket(movie, customer)
+    customer = dispense_ticket(movie, charge(customer))
     movie = remove_seat(movie)
     return customer, movie
 
@@ -37,8 +36,7 @@ def remove_seat(movie):
 
 def refund_ticket(movie, customer):
     """Performs the steps required in refunding a ticket and returns altered customer and movie"""
-    customer = add_funds(customer)
-    customer = remove_ticket(movie, customer)
+    customer = remove_ticket(movie, add_funds(customer))
     movie = add_seat(movie)
     return customer, movie
 
