@@ -26,14 +26,17 @@ def movie_db():
 def test_enough_money():
     """Tests the enough money function"""
     customers = customer_db()
-    bob = customers["Bob"]
+
     ricci = customers["Ricci"]
     assert not movies.enough_money(ricci)
+
+    bob = customers["Bob"]
     assert movies.enough_money(bob)
 
 def test_charge():
     """Tests charge function"""
     customers = customer_db()
+
     bob = customers["Bob"]
     assert movies.enough_money(bob)
     bobs_actual_cash = movies.charge(bob)["cash"]
@@ -45,6 +48,7 @@ def test_charge():
     jims_actual_cash = movies.charge(jim)["cash"]
     jims_expected_cash = 5.0
     assert jims_actual_cash == jims_expected_cash
+
     ricci = customers["Ricci"]
     assert not movies.enough_money(ricci)
 
@@ -53,14 +57,12 @@ def test_dispense_ticket():
     customers = customer_db()
     movies_ = movie_db()
 
-    bob = customers["Bob"]
-    xmen = movies_["Xmen"]
+    bob, xmen = customers["Bob"], movies_["Xmen"]
     bobs_library = movies.dispense_ticket(xmen, bob)["movies"]
     bobs_expected_library = ["Xmen 8: The Xmennening"]
     assert bobs_library == bobs_expected_library
 
-    jim = customers["Jim"]
-    bromance = movies_["Bromance"]
+    jim, bromance = customers["Jim"], movies_["Bromance"]
     jims_library = movies.dispense_ticket(bromance, jim)["movies"]
     jims_expected_library = ["Xmen 8: The Xmennening", "The Bromance"]
     assert jims_library == jims_expected_library
@@ -68,8 +70,8 @@ def test_dispense_ticket():
 def test_remove_seat():
     """Tests remove seat function"""
     movies_ = movie_db()
-    xmen = movies_["Xmen"]
 
+    xmen = movies_["Xmen"]
     assert xmen["seats_avaliable"] >= 1
     xmen_seats_avaliable = movies.remove_seat(xmen)
     xmen_expected_seats_avaliable = {"title" : "Xmen 8: The Xmennening", "seats_avaliable" : 9}
@@ -86,12 +88,12 @@ def test_purchase_tickets():
     customers = customer_db()
     movies_ = movie_db()
 
-    bob = customers["Bob"]
-    bromance = movies_["Bromance"]
-    actual_bob, actual_bromance = movies.purchase_ticket(bromance, bob)
+    actual_bob, actual_bromance = movies.purchase_ticket(movies_["Bromance"], customers["Bob"])
+
     expected_bob = {"movies": ["The Bromance"], "cash" : 95.0}
-    expected_bromance = {"title" : "The Bromance", "seats_avaliable" : 19}
     assert actual_bob == expected_bob
+
+    expected_bromance = {"title" : "The Bromance", "seats_avaliable" : 19}
     assert actual_bromance == expected_bromance
 
 def test_add_funds():
@@ -113,14 +115,12 @@ def test_remove_ticket():
     customers = customer_db()
     movies_ = movie_db()
 
-    jim = customers["Jim"]
-    xmen = movies_["Xmen"]
+    jim, xmen = customers["Jim"], movies_["Xmen"]
     jims_library = movies.remove_ticket(xmen, jim)["movies"]
     jims_expected_library = []
     assert jims_library == jims_expected_library
 
-    cary = customers["Cary"]
-    bromance = movies_["Bromance"]
+    cary, bromance = customers["Cary"], movies_["Bromance"]
     cary_library = movies.remove_ticket(bromance, cary)["movies"]
     cary_expected_library = ["Gigli: The Play: The Book: The movie"]
     assert cary_library == cary_expected_library
@@ -144,10 +144,10 @@ def test_refund_ticket():
     customers = customer_db()
     movies_ = movie_db()
 
-    jim = customers["Jim"]
-    xmen = movies_["Xmen"]
-    actual_jim, actual_xmen = movies.refund_ticket(xmen, jim)
+    actual_jim, actual_xmen = movies.refund_ticket(movies_["Xmen"], customers["Jim"])
+
     expected_jim = {"movies": [], "cash" : 15.0}
-    expected_xmen = {"title" : "Xmen 8: The Xmennening", "seats_avaliable" : 11}
     assert actual_jim == expected_jim
+
+    expected_xmen = {"title" : "Xmen 8: The Xmennening", "seats_avaliable" : 11}
     assert actual_xmen == expected_xmen
