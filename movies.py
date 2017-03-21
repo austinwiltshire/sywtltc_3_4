@@ -65,7 +65,7 @@ def print_customer_data(customer): #movies have brackets around them
 
 def print_all_movie_data(movie_dictionary):
     """Print all movie data raw"""
-    for title, details in movie_dictionary.items():
+    for _, details in movie_dictionary.items():
         print_movie_data(details)
         print("")
 
