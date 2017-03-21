@@ -4,10 +4,7 @@ MOVIE_PRICE = 5.0
 
 def enough_money(customer):
     """Check if customer has adequate funds"""
-    balance = customer["cash"]
-    if balance < MOVIE_PRICE:
-        return False
-    return True
+    return False if customer["cash"] < MOVIE_PRICE else True
 
 def purchase_ticket(movie, customer):
     """Performs the steps required in purchasing a ticket and returns altered customer and movie"""
