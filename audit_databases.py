@@ -5,7 +5,7 @@ def print_movie_data(movie):
     print("Movie Title:           ", movie["title"])
     print("Seats Remaining:       ", movie["seats_available"])
 
-def print_customer_data(customer): #movies have brackets around them
+def print_customer_data(customer):
     """Prints customer database information"""
     print("Movie Tickets:         ", ",  ".join(customer["movies"]))
     print("Account Balance:       ", customer["cash"])
@@ -19,6 +19,8 @@ def print_all_movie_data(movie_dictionary):
 def print_all_customer_data(customer_dictionary):
     """Print all customer data raw"""
     for details in customer_dictionary.values():
-        print("customer")
-        print_customer_data(details)
-        print("")
+        for name in customer_dictionary.keys():
+            print(name)
+            print_customer_data(details)
+            print("")
+        return
