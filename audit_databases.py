@@ -12,13 +12,13 @@ def print_customer_data(customer): #movies have brackets around them
 
 def print_all_movie_data(movie_dictionary):
     """Print all movie data raw"""
-    for movie_dictionary.itervalues():
-        print_movie_data(movie_dictionary)
-        print("")
+    for details in movie_dictionary.values():
+        print_movie_data(details)
+    print("")
 
 def print_all_customer_data(customer_dictionary):
     """Print all customer data raw"""
-    for customer, details in customer_dictionary.items():
-        print(customer)
+    for details in customer_dictionary.values():
+        print("customer")
         print_customer_data(details)
         print("")

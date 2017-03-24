@@ -30,10 +30,10 @@ def test_enough_money():
 
     ricci = customers["Ricci"]
     assert ricci["cash"] < 5
-    assert not purchase_ticket_details.enough_money(ricci)
+    assert not purchase_ticket_details.enough_money(ricci["cash"])
 
     bob = customers["Bob"]
-    assert purchase_ticket_details.enough_money(bob)
+    assert purchase_ticket_details.enough_money(bob["cash"])
 
 def test_charge():
     """Tests charge function"""
@@ -41,21 +41,21 @@ def test_charge():
 
     bob = customers["Bob"]
     assert bob["cash"] == 100.0
-    assert purchase_ticket_details.enough_money(bob)
+    assert purchase_ticket_details.enough_money(bob["cash"])
     bobs_actual_cash = purchase_ticket_details.charge(bob)["cash"]
     bobs_expected_cash = 95.0
     assert bobs_actual_cash == bobs_expected_cash
 
     jim = customers["Jim"]
     assert jim["cash"] == 10
-    assert purchase_ticket_details.enough_money(bob)
+    assert purchase_ticket_details.enough_money(bob["cash"])
     jims_actual_cash = purchase_ticket_details.charge(jim)["cash"]
     jims_expected_cash = 5.0
     assert jims_actual_cash == jims_expected_cash
 
     ricci = customers["Ricci"]
     assert ricci["cash"] == 4.0
-    assert not purchase_ticket_details.enough_money(ricci)
+    assert not purchase_ticket_details.enough_money(ricci["cash"])
 
 def test_dispense_ticket():
     """Test adding ticket to customers account"""

@@ -1,3 +1,5 @@
+"""Global data for movie theatre"""
+
 MOVIE_PRICE = 5.0
 
 def customer_db():
