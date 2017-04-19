@@ -1,32 +1,11 @@
 """Tests the functions of the purchase_ticket_details.py file"""
 
 import purchase_ticket_details
-
-def customer_db():
-    """Define Customer database for testing"""
-    return {
-        "Bob" : {"movies":[],
-                 "cash" : 100.0},
-        "Jim" : {"movies": ["Xmen 8: The Xmennening"],
-                 "cash" : 10.0},
-        "Cary" : {"movies": ["Gigli: The Play: The Book: The movie", "The Bromance"],
-                  "cash" : 120.0},
-        "Ricci": {"movies": [],
-                  "cash" : 4.0}
-    }
-
-def movie_db():
-    """Define movie database for testing"""
-    return {
-        "Xmen" : {"title" : "Xmen 8: The Xmennening", "seats_available" : 10},
-        "Bromance" : {"title" : "The Bromance", "seats_available" : 20},
-        "Gigli" : {"title" : "Gigli: The Play: The Book: The movie", "seats_available" : 102},
-        "Hungergames" : {"title" : "The Hunger Games", "seats_available" : 1}
-    }
+import customer_db
 
 def test_enough_money():
     """Tests the enough money function"""
-    customers = customer_db()
+    customers = customer_db.customer_db()
 
     ricci = customers["Ricci"]
     assert ricci["cash"] < 5
@@ -37,7 +16,7 @@ def test_enough_money():
 
 def test_charge():
     """Tests charge function"""
-    customers = customer_db()
+    customers = customer_db.customer_db()
 
     bob = customers["Bob"]
     assert bob["cash"] == 100.0
@@ -59,8 +38,8 @@ def test_charge():
 
 def test_dispense_ticket():
     """Test adding ticket to customers account"""
-    customers = customer_db()
-    movies_ = movie_db()
+    customers = customer_db.customer_db()
+    movies_ = customer_db.movie_db()
 
     bob, xmen = customers["Bob"], movies_["Xmen"]
     bobs_library = purchase_ticket_details.dispense_ticket(xmen, bob)["movies"]
@@ -74,7 +53,7 @@ def test_dispense_ticket():
 
 def test_remove_seat():
     """Tests remove seat function"""
-    movies_ = movie_db()
+    movies_ = customer_db.movie_db()
 
     xmen = movies_["Xmen"]
     assert xmen["seats_available"] == 10

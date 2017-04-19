@@ -1,31 +1,11 @@
+"""Tests details for refund function"""
+
 import refund_tickets_details
-import movie_theatre
-
-def customer_db():
-    """Define Customer database for testing"""
-    return {
-        "Bob" : {"movies":[],
-                 "cash" : 100.0},
-        "Jim" : {"movies": ["Xmen 8: The Xmennening"],
-                 "cash" : 10.0},
-        "Cary" : {"movies": ["Gigli: The Play: The Book: The movie", "The Bromance"],
-                  "cash" : 120.0},
-        "Ricci": {"movies": [],
-                  "cash" : 4.0}
-    }
-
-def movie_db():
-    """Define movie database for testing"""
-    return {
-        "Xmen" : {"title" : "Xmen 8: The Xmennening", "seats_available" : 10},
-        "Bromance" : {"title" : "The Bromance", "seats_available" : 20},
-        "Gigli" : {"title" : "Gigli: The Play: The Book: The movie", "seats_available" : 102},
-        "Hungergames" : {"title" : "The Hunger Games", "seats_available" : 1}
-    }
+import customer_db
 
 def test_add_funds():
     """Tests charge function"""
-    customers = customer_db()
+    customers = customer_db.customer_db()
 
     bob = customers["Bob"]
     assert bob["cash"] == 100.0
@@ -41,8 +21,8 @@ def test_add_funds():
 
 def test_remove_ticket():
     """Tests removing ticket back from account"""
-    customers = customer_db()
-    movies_ = movie_db()
+    customers = customer_db.customer_db()
+    movies_ = customer_db.movie_db()
 
     jim, xmen = customers["Jim"], movies_["Xmen"]
     jims_library = refund_tickets_details.remove_ticket(xmen, jim)["movies"]
@@ -56,7 +36,7 @@ def test_remove_ticket():
 
 def test_add_seat():
     """Tests remove seat function"""
-    movies_ = movie_db()
+    movies_ = customer_db.movie_db()
 
     xmen = movies_["Xmen"]
     assert xmen["seats_available"] == 10
